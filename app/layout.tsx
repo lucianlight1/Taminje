@@ -21,10 +21,10 @@ export const metadata: Metadata = {
   keywords: [
     "Engineering services Nigeria",
     "Design and Fabrication",
-    "Manufacturing company Nigeria",
-    "Vegetable oil processing",
+    "Manufacturing company",
+    "Vegetable oil Processing & supply",
     "Engineering consultancy",
-    "General contracting Nigeria",
+    "General contracting services",
     "Taminje International Limited",
   ],
 };

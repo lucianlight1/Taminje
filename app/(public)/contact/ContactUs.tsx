@@ -9,12 +9,12 @@ import toast, { Toaster } from "react-hot-toast";
 
 const services = [
     "Design & Fabrication",
-    "Manufacturing",
-    "Vegetable Oil Processing",
+    "Manufacturing Of process Equipment & Plants",
+    "Vegetable Oil Processing & Supply", // Updated
     "Consultancy Services",
     "General Contracting",
-    "Solar Power Systems",
-    "Project Start-up & Troubleshooting",
+    "Solar Power Systems Design, Installation & Maintenance",
+    "Project Conceptualization, Design, Procurement, Comissioning/Start-up & Troubleshooting",
 ];
 
 function ContactUs() {
@@ -71,21 +71,21 @@ function ContactUs() {
                 return (
                     <>
                         <Input label="Project Type" placeholder="e.g. Industrial Fabrication" name="project_type" />
-                        <Input label="Estimated Budget" placeholder="Enter budget range" name="estimated_budget" />
+                        <Input label="Budget Range" placeholder="Enter budget range" name="estimated_budget" />
                     </>
                 );
-            case "Manufacturing":
+            case "Manufacturing Of process Equipment & Plants":
                 return (
                     <>
                         <Input label="Production Volume" placeholder="Monthly production volume" name="production_volume" />
                         <Input label="Timeline" placeholder="Expected production start date" name="timeline" />
                     </>
                 );
-            case "Vegetable Oil Processing":
+            case "Vegetable Oil Supply":
                 return (
                     <>
-                        <Input label="Processing Capacity" placeholder="Liters per day" name="processing_capacity" />
-                        <Input label="Raw Material Type" placeholder="e.g. Palm, Soybean" name="raw_material_type" />
+                        <Input label="Supply Volume / Capacity" placeholder="e.g. Liters per month" name="supply_capacity" />
+                        <Input label="Oil Type" placeholder="e.g. Palm, Soybean, Groundnut" name="oil_type" />
                     </>
                 );
             case "Consultancy Services":
@@ -96,13 +96,8 @@ function ContactUs() {
                     </>
                 );
             case "General Contracting":
-                return (
-                    <>
-                        <Input label="Project Location" placeholder="Enter project site location" name="project_location" />
-                        <Input label="Project Duration" placeholder="Estimated duration" name="project_duration" />
-                    </>
-                );
-            case "Solar Power Systems":
+                return null; // Handled separately below
+            case "Solar Power Systems Design, Installation & Maintenance":
                 return (
                     <>
                         <Input label="Load Assessment Requirement" placeholder="Estimated daily power consumption (kWh)" name="load_assessment" />
@@ -112,7 +107,7 @@ function ContactUs() {
                         <Input label="Expected Completion Timeline" placeholder="Preferred installation date" name="completion_timeline" />
                     </>
                 );
-            case "Project Start-up & Troubleshooting":
+            case "Project Conceptualization, Design, Procurement, Comissioning/Start-up & Troubleshooting":
                 return (
                     <>
                         <Input label="System Type" placeholder="e.g. Manufacturing line, Power system" name="system_type" />
@@ -134,7 +129,6 @@ function ContactUs() {
             transition={{ duration: 0.6 }}
             className="min-h-screen bg-gray-100 py-20"
         >
-            {/* Hot Toast */}
             <Toaster position="top-right" />
 
             <div className="max-w-[90%] mx-auto flex md:flex-row flex-col gap-12">
@@ -199,7 +193,7 @@ function ContactUs() {
                     </div>
                 </motion.div>
 
-                {/* RIGHT SIDE FORM */}
+                {/* RIGHT SIDE FORM / INFO AREA */}
                 <motion.div
                     initial={{ x: 40, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -212,51 +206,66 @@ function ContactUs() {
                         setSelectedService={setSelectedService}
                     />
 
-                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
-                        {/* Hidden inputs for EmailJS */}
-                        <input type="hidden" name="selected_service" value={selectedService} />
-                        <input type="hidden" name="dynamic_fields" value="" />
-
-                        <Input label="Full Name" placeholder="Your name" name="full_name" />
-                        <Input label="Email" placeholder="Your email address" type="email" name="user_email" />
-                        <Input label="Company (Optional)" placeholder="Company name" name="company" />
-
-                        {/* Animated Dynamic Fields */}
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={selectedService}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.3 }}
-                                className="space-y-4"
-                            >
-                                {renderServiceFields()}
-                            </motion.div>
-                        </AnimatePresence>
-
-                        <div>
-                            <label className="block text-sm font-medium mb-2">
-                                Leave a message
-                            </label>
-                            <textarea
-                                name="message"
-                                rows={4}
-                                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#33A259] outline-none"
-                                placeholder="Write your message here..."
-                            />
-                        </div>
-
-                        <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.97 }}
-                            type="submit"
-                            disabled={loading}
-                            className="w-full bg-[#33A259] text-white py-3 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                    {selectedService === "General Contracting" ? (
+                        /* Information display when General Contracting is selected */
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mt-6 p-6 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 space-y-2"
                         >
-                            {loading ? "Sending..." : "Send Message"}
-                        </motion.button>
-                    </form>
+                            <h3 className="font-semibold text-lg text-gray-900">Information Notice</h3>
+                            <p className="text-sm leading-relaxed">
+                                General Contracting details are provided for informational purposes only. No form submission or inquiry details are required for this service.
+                            </p>
+                        </motion.div>
+                    ) : (
+                        /* Standard form for all other services */
+                        <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 mt-6">
+                            {/* Hidden inputs for EmailJS */}
+                            <input type="hidden" name="selected_service" value={selectedService} />
+                            <input type="hidden" name="dynamic_fields" value="" />
+
+                            <Input label="Full Name" placeholder="Your name" name="full_name" />
+                            <Input label="Email" placeholder="Your email address" type="email" name="user_email" />
+                            <Input label="Company (Optional)" placeholder="Company name" name="company" />
+
+                            {/* Animated Dynamic Fields */}
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={selectedService}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="space-y-4"
+                                >
+                                    {renderServiceFields()}
+                                </motion.div>
+                            </AnimatePresence>
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">
+                                    Leave a message
+                                </label>
+                                <textarea
+                                    name="message"
+                                    rows={4}
+                                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#33A259] outline-none"
+                                    placeholder="Write your message here..."
+                                />
+                            </div>
+
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.97 }}
+                                type="submit"
+                                disabled={loading}
+                                className="w-full bg-[#33A259] text-white py-3 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                            >
+                                {loading ? "Sending..." : "Send Message"}
+                            </motion.button>
+                        </form>
+                    )}
                 </motion.div>
             </div>
         </motion.section>

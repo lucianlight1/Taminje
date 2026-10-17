@@ -7,7 +7,7 @@ import { ArrowForward } from "@mui/icons-material";
 function Hero() {
     const highlights = [
         "Registered in February 2026 with experienced leadership",
-        "33+ years and 12+ years of public & private sector experience",
+        "Over 4 Decades of combined experience in public & private sectors",
         "Multiservice delivery across engineering, processing & contracting",
         "Quality-driven, safety-conscious, and accountable execution",
     ];

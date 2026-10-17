@@ -27,7 +27,7 @@ function AboutUs() {
                     <p className="text-gray-500 max-w-xl">
                         Taminje International Limited is a multiservice company
                         delivering Design & Fabrication, Manufacturing,
-                        Vegetable Oil Processing, Consultancy Services, and
+                        Vegetable Oil Processing & Supply, Consultancy Services, and
                         General Contracting. Registered in February 2026, we are
                         built on experienced leadership and disciplined
                         execution.

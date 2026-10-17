@@ -19,7 +19,7 @@ function Footer() {
                         </h3>
                         <p className="text-sm leading-relaxed text-gray-400 max-w-md">
                             A multiservice company delivering design & fabrication, manufacturing,
-                            vegetable oil processing, consultancy services, and general contracting.
+                            vegetable oil processing & supply, consultancy services, and general contracting.
                             Registered in February 2026 and built on experienced leadership.
                         </p>
 
@@ -75,7 +75,7 @@ function Footer() {
                                 Manufacturing
                             </li>
                             <li>
-                                Vegetable Oil Processing
+                                Vegetable Oil Processing & supply
                             </li>
                             <li>
                                 Consultancy Services
@@ -87,8 +87,8 @@ function Footer() {
                                 Solar Power Systems <br />(Design, Supply & Installation)
                             </li>
                             <li>
-                                Project Start-up & Troubleshooting
-                            </li>
+                                Project Start-up & Troubleshooting            
+                          </li>
                         </ul>
                     </div>
 
